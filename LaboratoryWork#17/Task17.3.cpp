@@ -33,7 +33,7 @@ int main()
 					begin1 = i;
 				}
 				begin2 = i;
-				end2 = j - 1;
+				end2 = j - 1;a
 				i = j;
 				break;
 			}
