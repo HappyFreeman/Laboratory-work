@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 
 using namespace std;
 
@@ -18,37 +19,37 @@ int main()
 	cin >> k;
 
 	cout << "array : " << endl;
-	for (int i = 0; i < N; i++)
+	for (int i = 0; i < N; ++i)
 		cin >> array[i];
 
-	int c = 0, j;
-	int begin1 = 0, end1 = 0, begin2 = 0, end2 = 0;
-	for (int i = 0; i < N - 1; i++) {
-		if (array[i] == array[i + 1]) {
-			for (j = i + 2; j < N; j++) {
-				c++;
-				//cout << "c = " << c << endl;
-				if (c == k) {
-					end1 = j - 1;
-					begin1 = i;
-				}
-				begin2 = i;
-				end2 = j - 1;a
-				i = j;
-				break;
-			}
+	int nk = 1, begink = 1, len = (k == 1 ? 1 : 0), beginend;
 
+	for (int i = 1; i < N; ++i) {
+		if (array[i - 1] != array[i]) {
+			nk++;
+			if (nk == k) begink = i;
+			beginend = i;
 		}
+		if (nk == k) len++;
 	}
 
-	int s1 = array[begin1];
-	int s2 = array[begin2];
+	//cout << nk << " " << begink << " " << len << " " << beginend;
 
-	for (int i = 0; i < N; i++) {
-		if ((i >= begin2) && (i <= end2)) cout << s1 << " ";
-		else if ((i >= begin1) && (i <= end1)) cout << s2 << " ";
-		else cout << array[i] << " ";
-	}
+	int i2 = -1;
 
+	for (int i = 0; i < begink; ++i)  barray[++i2] = array[i];
 
+	for (int i = beginend; i < N; ++i)  barray[++i2] = array[i];
+
+	for (int i = begink + len; i < beginend; ++i)  barray[++i2] = array[i];
+
+	for (int i = begink; i < begink + len; ++i)  barray[++i2] = array[i];
+
+	for (int i = 0; i < N;++i) array[i] = barray[i];
+
+	//cout << endl;
+
+	for (int i = 0; i < N;++i) cout << array[i] << " ";
 }
+
+
